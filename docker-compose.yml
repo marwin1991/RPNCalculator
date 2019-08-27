@@ -3,3 +3,4 @@ services:
   rpn_calculator:
     build:
       context: .
+    container_name: rpn_calculator
