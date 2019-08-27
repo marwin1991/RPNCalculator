@@ -1,17 +1,40 @@
 package pl.zmilczak.rpn_calculator.model;
 
 public enum  Operation {
-    PLUS("+"),
-    MINUS("-"),
-    MULTIPLY("*");
+    PLUS('+'),
+    MINUS('-'),
+    MULTIPLY('*');
 
-    private String operator;
+    private char operator;
 
-    Operation(String operator) {
+    Operation(char operator) {
         this.operator = operator;
     }
 
-    public String getOperator() {
+    public char getOperator() {
         return operator;
     }
+
+    public static boolean isOperator(String c){
+        if(c == null || c.length() != 1)
+            return false;
+
+        for(Operation o : values()){
+            if(o.getOperator() == c.charAt(0))
+                return true;
+        }
+
+        return false;
+    }
+
+
+    public static Operation of(String c){
+        for(Operation o : values()){
+            if(o.getOperator() == c.charAt(0))
+                return o;
+        }
+
+        throw new IllegalArgumentException("Wrong type of operation: " + c);
+    }
+
 }
