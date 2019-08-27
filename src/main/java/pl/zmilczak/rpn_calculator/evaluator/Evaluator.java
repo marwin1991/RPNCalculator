@@ -1,4 +1,4 @@
-package pl.zmilczak.rpn_calculator;
+package pl.zmilczak.rpn_calculator.evaluator;
 
 import pl.zmilczak.rpn_calculator.model.Operation;
 

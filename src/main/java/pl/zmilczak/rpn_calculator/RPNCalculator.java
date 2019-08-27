@@ -1,24 +1,26 @@
 package pl.zmilczak.rpn_calculator;
 
+import pl.zmilczak.rpn_calculator.evaluator.Evaluator;
 import pl.zmilczak.rpn_calculator.model.Operation;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.List;
 
 public class RPNCalculator {
 
-    public static void main(String[] args){
-        Deque<Integer> stack = new ArrayDeque<>();
+    private List<String> args;
+    private Deque<Integer> stack;
 
 
-        System.out.print("RPNCalculator \n");
-        System.out.print("Number of arguments: " + args.length + "\n");
-        for (String s: args) {
-            System.out.print(s + "\n");
-        }
+    public RPNCalculator(List<String> args) {
+        this.args = args;
+        this.stack = new ArrayDeque<>();
+    }
 
-        Arrays.asList(args).forEach(s -> {
+    public Integer calculate(){
+        args.forEach(s -> {
             if(Operation.isOperator(s)) {
                 Integer a = stack.pop();
                 Integer b = stack.pop();
@@ -28,11 +30,21 @@ public class RPNCalculator {
             }
         });
 
+        if(stack.size() != 1)
+            throw new IllegalArgumentException("Wrong input, cannot be calculated!");
 
-        System.out.print("Result: " + stack.pop() + "\n");
+        return stack.pop();
     }
 
+    public static void main(String[] args){
 
+        System.out.print("RPNCalculator \n");
+        System.out.print("Number of arguments: " + args.length + "\nPass args: ");
+        for (String s: args) {
+            System.out.print(s + " ");
+        }
 
-
+        RPNCalculator rpnCalculator = new RPNCalculator(Arrays.asList(args));
+        System.out.print("\nResult: " + rpnCalculator.calculate() + "\n");
+    }
 }

@@ -9,4 +9,5 @@ RUN mvn clean install
 # Step : Package image
 FROM openjdk:11-slim
 COPY --from=target /build/target/RPNCalculator.jar /app/RPNCalculator.jar
-CMD exec java $JAVA_OPTS -jar /app/RPNCalculator.jar 2 3 +
+CMD tail -f /dev/null
+#CMD java -jar /app/RPNCalculator.jar 3 4 5 '*' '-'
