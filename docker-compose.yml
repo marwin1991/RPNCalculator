@@ -1,0 +1,5 @@
+version: "3.7"
+services:
+  rpn_calculator:
+    build:
+      context: .
